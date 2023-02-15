@@ -6,7 +6,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PizzaController {
 	
 	@RequestMapping("/")
-	public String homepage() {
+	public String homepage(Model model) {
+		
+		List<Product> products = Collections.unmodifiableList(
+				Arrays.asList(
+						new Product("Anchovy Lover's", 10),
+						new Product("Paleo Pizza", 15),
+						new Product("Dessert Pizza", 20)					
+		));
+		
+		
+		model.addAttribute("productlist", products);
+		
 		return "index";
 	}
 }
